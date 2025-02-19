@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3cde49c642203044eb8b0fb76b31f2ec
+timeCreated: 1444423441
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 47702
+  packageName: Airplane Pixel Sprites
+  packageVersion: 1.0
+  assetPath: Assets/AirplanePixelSprites/Animation/AnimControllers/Airplane10.controller
+  uploadId: 85036

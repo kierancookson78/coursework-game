@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 29d3331b228f3644faf0a45752ea820c
+timeCreated: 1444263777
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 47702
+  packageName: Airplane Pixel Sprites
+  packageVersion: 1.0
+  assetPath: Assets/AirplanePixelSprites/Animation/Anims/Explosion01.anim
+  uploadId: 85036

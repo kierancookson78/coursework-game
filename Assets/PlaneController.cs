@@ -30,7 +30,7 @@ public class PlaneController : MonoBehaviour
             rb.linearVelocity = direction * moveSpeed;
 
             // Rotation (Preventing Flip, Smooth Rotation)
-            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 0f, targetAngle), Time.fixedDeltaTime * rotationSpeed);
         }
         else

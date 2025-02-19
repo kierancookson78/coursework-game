@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3f2af9f930505214aaa35853e285ced8
+timeCreated: 1444263777
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 47702
+  packageName: Airplane Pixel Sprites
+  packageVersion: 1.0
+  assetPath: Assets/AirplanePixelSprites/Animation/AnimControllers/Explosion01.controller
+  uploadId: 85036

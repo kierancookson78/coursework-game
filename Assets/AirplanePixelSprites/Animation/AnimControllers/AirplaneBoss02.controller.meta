@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 75d92766aa7b35f4482d74352a94c230
+timeCreated: 1444425702
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 47702
+  packageName: Airplane Pixel Sprites
+  packageVersion: 1.0
+  assetPath: Assets/AirplanePixelSprites/Animation/AnimControllers/AirplaneBoss02.controller
+  uploadId: 85036

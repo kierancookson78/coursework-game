@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6097aea956f245a4b8db0c463cd4c872
+timeCreated: 1444431542
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 47702
+  packageName: Airplane Pixel Sprites
+  packageVersion: 1.0
+  assetPath: Assets/AirplanePixelSprites/Animation/AnimControllers/Bomb01_0.controller
+  uploadId: 85036

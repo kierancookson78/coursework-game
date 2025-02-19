@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 36076b06b9ad4c34eaebb46f42532886
+timeCreated: 1444425123
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 47702
+  packageName: Airplane Pixel Sprites
+  packageVersion: 1.0
+  assetPath: Assets/AirplanePixelSprites/Animation/AnimControllers/Airplane13.controller
+  uploadId: 85036

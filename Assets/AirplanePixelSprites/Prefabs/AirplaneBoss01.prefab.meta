@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a258e4499c0e38c4f841cd7b2564ff0a
+timeCreated: 1444369922
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 47702
+  packageName: Airplane Pixel Sprites
+  packageVersion: 1.0
+  assetPath: Assets/AirplanePixelSprites/Prefabs/AirplaneBoss01.prefab
+  uploadId: 85036

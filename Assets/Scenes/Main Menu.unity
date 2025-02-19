@@ -327,6 +327,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &522505358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522505352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5140a709683cd54ab544604e97c5b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletOffset: {x: 0, y: 1, z: 0}
+  bulletPrefab: {fileID: 1328834765021283889, guid: 384433c09db45d648b623a75a797bbd0, type: 3}
+  fireRate: 0.2
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +500,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 125042, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 522505357}
+    - targetCorrespondingSourceObject: {fileID: 125042, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 522505358}
   m_SourcePrefab: {fileID: 100100000, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

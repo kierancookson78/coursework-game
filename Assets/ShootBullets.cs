@@ -15,7 +15,7 @@ public class ShootBullets : MonoBehaviour
         {
             cooldownTimer = fireRate;
             Vector3 offset = transform.rotation * bulletOffset;
-            Instantiate(bulletPrefab, transform.position +  offset, transform.rotation);
+            Instantiate(bulletPrefab, transform.position + offset, transform.rotation);
         }
     }
 }

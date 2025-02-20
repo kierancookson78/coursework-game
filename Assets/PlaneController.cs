@@ -32,6 +32,7 @@ public class PlaneController : MonoBehaviour
             // Rotation (Preventing Flip, Smooth Rotation)
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 0f, targetAngle), Time.fixedDeltaTime * rotationSpeed);
+            //transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
         }
         else
         {

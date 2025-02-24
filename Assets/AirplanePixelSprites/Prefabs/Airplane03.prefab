@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletOffset: {x: 0, y: 1, z: 0}
   bulletPrefab: {fileID: 1328834765021283889, guid: 384433c09db45d648b623a75a797bbd0, type: 3}
+  bulletSpeed: 15
   fireRate: 0.2
   audioClip: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
   audioSource: {fileID: 7735560146893611941}

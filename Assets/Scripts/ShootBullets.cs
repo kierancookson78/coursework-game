@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ShootBullets : MonoBehaviour
 {
-    public Vector3 bulletOffset = new(0, 0.5f, 0);
-    public GameObject bulletPrefab;
-    public float fireRate = 0.5f;
-    public AudioClip audioClip;
-    public AudioSource audioSource;
+    [SerializeField] private Vector3 bulletOffset = new(0, 0.5f, 0);
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioSource audioSource;
     private float cooldownTimer = 0;
 
     void Update()

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MoveForwardBullet : MonoBehaviour
+public class SetBulletTrajectory : MonoBehaviour
 {
-    public float bulletSpeed = 5f;
+    [SerializeField] private float bulletSpeed = 5f;
     void Update()
     {
         Vector3 pos = transform.position;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DestroyBullets : MonoBehaviour
 {
-    public float destructTime = 1f;
+    [SerializeField] private float destructTime = 1f;
     void Update()
     {
         destructTime -= Time.deltaTime;

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5109733177956413465}
   - component: {fileID: -4983960065537409752}
   - component: {fileID: -7260801806858132309}
+  - component: {fileID: 889986441350003104}
+  - component: {fileID: -7716034970525469401}
   m_Layer: 0
   m_Name: Enemy Bullet
   m_TagString: Untagged
@@ -152,3 +154,29 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.03
+--- !u!114 &889986441350003104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484620901813203919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509780ebf0b41f6478c5c4b53a00427f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 20
+--- !u!114 &-7716034970525469401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484620901813203919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cefb6636e63f048a51e5f6b5dfe15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructTime: 4

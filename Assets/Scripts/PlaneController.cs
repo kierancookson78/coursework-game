@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlaneController : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-    public float rotationSpeed = 5f; // For smooth rotation
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float rotationSpeed = 5f;
 
     private Rigidbody2D rb;
 
@@ -18,25 +18,20 @@ public class PlaneController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Mouse Direction
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousePosition - transform.position;
-        float distanceToMouse = direction.magnitude; // Calculate distance
+        float distanceToMouse = direction.magnitude;
 
-        // Set Velocity (Only if not close to the mouse)
-        if (distanceToMouse > 0.1f) // Adjust 0.1f to your desired threshold
+        if (distanceToMouse > 0.1f)
         {
             direction.Normalize();
             rb.linearVelocity = direction * moveSpeed;
-
-            // Rotation (Preventing Flip, Smooth Rotation)
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 0f, targetAngle), Time.fixedDeltaTime * rotationSpeed);
-            //transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
         }
         else
         {
-            rb.linearVelocity = Vector2.zero; // Stop the plane when close
+            rb.linearVelocity = Vector2.zero;
         }
     }
 }

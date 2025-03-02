@@ -7,6 +7,7 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
     private int currentHealth;
+    private bool isPlayerDead = false;
 
     void Start()
     {
@@ -27,12 +28,16 @@ public class PlayerHealthComponent : MonoBehaviour
     void Die()
     {
         Debug.Log("Player jet destroyed!");
-        if (explosionPrefab != null)
+        if (!isPlayerDead)
         {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            PlayExplosion();
+            if (explosionPrefab != null)
+            {
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                PlayExplosion();
+            }
+            Invoke("GameOver", 0.767f);
         }
-        Invoke("GameOver", 0.767f);
+        isPlayerDead = true;
     }
 
     public void PlayExplosion()

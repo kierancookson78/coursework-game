@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21836352cab5b2a4887737bc2601bf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 125042, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
   enemySpeed: 5
   rotationSpeed: 2
   detectionDistance: 10
@@ -174,7 +174,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2484620901813203919, guid: 1aa6719f75e269646ae331152d4ddacf, type: 3}
   fireRate: 0.5
   audioClip: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 485614, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
   angleTolerance: 5
 --- !u!60 &8214716641392222036
 PolygonCollider2D:

@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 21275570}
   - component: {fileID: 9538304}
   - component: {fileID: 1873424603787890318}
-  - component: {fileID: 984197705063253589}
-  - component: {fileID: 5575894659031589045}
   - component: {fileID: 8214716641392222036}
   - component: {fileID: 1237281258536299869}
+  - component: {fileID: 6871861413280417638}
   m_Layer: 0
   m_Name: Enemy Jet
   m_TagString: Untagged
@@ -32,10 +31,11 @@ Transform:
   m_GameObject: {fileID: 134348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0742, y: -0.0696, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 6655932907892363719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &21275570
@@ -142,40 +142,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &984197705063253589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21836352cab5b2a4887737bc2601bf95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 125042, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
-  enemySpeed: 5
-  rotationSpeed: 2
-  detectionDistance: 10
---- !u!114 &5575894659031589045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f5e4526c0a43dc4e9e51be142e5bfee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletOffset: {x: 0, y: 0.5, z: 0}
-  bulletPrefab: {fileID: 2484620901813203919, guid: 1aa6719f75e269646ae331152d4ddacf, type: 3}
-  fireRate: 0.5
-  audioClip: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
-  player: {fileID: 485614, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
-  angleTolerance: 5
 --- !u!60 &8214716641392222036
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -253,3 +219,58 @@ MonoBehaviour:
   maxHealth: 100
   explosionPrefab: {fileID: 127332, guid: ef08d13eead399d4dbdaf49c94540206, type: 3}
   audioClip: {fileID: 8300000, guid: e192b71a7949f6642a2b368210c4df85, type: 3}
+--- !u!114 &6871861413280417638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bc4c93e01b8a843951ecef5d109dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeRigidbody: {fileID: 1873424603787890318}
+  planeTransform: {fileID: 435608}
+  bulletPrefab: {fileID: 2484620901813203919, guid: 1aa6719f75e269646ae331152d4ddacf, type: 3}
+  firePoint: {fileID: 6655932907892363719}
+  bulletAudio: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
+  player: {fileID: 485614, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
+  moveSpeed: 10
+  rotationSpeed: 5
+  bulletSpeed: 15
+  fireRate: 0.2
+  detectionDistance: 10
+  angleTolerance: 5
+--- !u!1 &7945857263516253549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6655932907892363719}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6655932907892363719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945857263516253549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 435608}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

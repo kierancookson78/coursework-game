@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerBulletColliderComponent : MonoBehaviour
 {
-    [SerializeField] private int bulletDamage = 50; // Amount of damage the bullet deals
+    [SerializeField] private int bulletDamage;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4532899555030718205}
   - component: {fileID: 6403412782468333177}
   - component: {fileID: -6353734097125480336}
-  - component: {fileID: 5774944284528550590}
+  - component: {fileID: -2972808641816496112}
   m_Layer: 0
   m_Name: Player Bullet
   m_TagString: Untagged
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destructTime: 4
---- !u!114 &5774944284528550590
+--- !u!114 &-2972808641816496112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,3 +180,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 50
+  bullet: {fileID: 0}

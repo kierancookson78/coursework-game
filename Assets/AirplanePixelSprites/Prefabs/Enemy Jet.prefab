@@ -239,7 +239,7 @@ MonoBehaviour:
   player: {fileID: 485614, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
   moveSpeed: 5
   rotationSpeed: 5
-  bulletSpeed: 10
+  bulletSpeed: 15
   fireRate: 0.2
   detectionDistance: 10
   angleTolerance: 5

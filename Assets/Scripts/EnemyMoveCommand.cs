@@ -25,7 +25,7 @@ public class EnemyMoveCommand : ICommand
         Vector2 direction = targetPosition - planeTransform.position;
         float distanceToPlayer = direction.magnitude;
 
-        if (distanceToPlayer > 0.1f)
+        if (distanceToPlayer < detectionDistance)
         {
             direction.Normalize();
             rb.linearVelocity = direction * speed;

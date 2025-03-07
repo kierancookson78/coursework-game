@@ -237,9 +237,9 @@ MonoBehaviour:
   firePoint: {fileID: 6655932907892363719}
   bulletAudio: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
   player: {fileID: 485614, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
-  moveSpeed: 10
+  moveSpeed: 5
   rotationSpeed: 5
-  bulletSpeed: 15
+  bulletSpeed: 10
   fireRate: 0.2
   detectionDistance: 10
   angleTolerance: 5

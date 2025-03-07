@@ -582,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundRenderer: {fileID: 844877490}
   planeTransform: {fileID: 226359423}
-  scrollSpeedMultiplier: 0.1
+  scrollSpeedMultiplier: 0.05
 --- !u!23 &844877490
 MeshRenderer:
   m_ObjectHideFlags: 0

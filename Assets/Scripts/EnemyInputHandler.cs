@@ -31,7 +31,7 @@ public class EnemyInputHandler : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         HandleInput();
     }

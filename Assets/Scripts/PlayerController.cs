@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         // Mouse Movement
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        moveCommand = new MoveCommand(planeTransform ,planeRigidbody, mousePosition, moveSpeed, rotationSpeed); // Pass rotation speed
+        moveCommand = new MoveCommand(planeTransform ,planeRigidbody, mousePosition, moveSpeed, rotationSpeed);
         moveCommand.Execute();
 
         // Left Mouse Button Click

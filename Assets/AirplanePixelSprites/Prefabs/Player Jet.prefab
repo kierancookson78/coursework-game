@@ -237,7 +237,7 @@ MonoBehaviour:
   firePoint: {fileID: 3919196732367411804}
   bulletAudio: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
   moveSpeed: 10
-  rotationSpeed: 1
+  rotationSpeed: 5
   bulletSpeed: 15
   fireRate: 0.2
 --- !u!1 &6186306202778561132

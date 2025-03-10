@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class EnemyHealthComponent : MonoBehaviour
@@ -5,7 +6,9 @@ public class EnemyHealthComponent : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private TextMeshProUGUI score;
     private int currentHealth;
+    private static int playerScore = 0;
 
     void Start()
     {
@@ -31,6 +34,8 @@ public class EnemyHealthComponent : MonoBehaviour
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             PlayExplosion();
         }
+        playerScore += 100;
+        score.text = playerScore.ToString();
         Destroy(gameObject);
     }
 

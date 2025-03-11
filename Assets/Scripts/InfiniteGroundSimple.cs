@@ -42,7 +42,7 @@ public class InfiniteGroundSimple : MonoBehaviour
 
             if (groundWidth > 0)
             {
-                float scaleFactor = (cameraWidth / groundWidth) * 2f;
+                float scaleFactor = (cameraWidth / groundWidth) * 2.5f;
                 transform.localScale = new Vector3(scaleFactor, transform.localScale.y, transform.localScale.z);
             }
             else

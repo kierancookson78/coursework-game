@@ -25,7 +25,7 @@ public class PlayerHealthComponent : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Player jet destroyed!");
         if (!isPlayerDead)

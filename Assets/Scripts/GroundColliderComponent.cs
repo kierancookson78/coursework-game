@@ -4,13 +4,28 @@ public class GroundColliderComponent : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the collision is with an enemy jet
         PlayerHealthComponent playerJet = collision.GetComponent<PlayerHealthComponent>();
+        PlayerBulletColliderComponent playerBulletColliderComponent = collision.GetComponent<PlayerBulletColliderComponent>();
+        if (playerBulletColliderComponent != null)
+        {
+            Destroy(playerBulletColliderComponent.gameObject);
+        }
 
         if (playerJet != null)
         {
-            // Damage the enemy jet
-            playerJet.TakeDamage(100);
+            playerJet.Die();
+        }
+
+        EnemyHealthComponent enemyJet = collision.GetComponent<EnemyHealthComponent>();
+        EnemyBulletColliderComponent enemyBulletColliderComponent = collision.GetComponent<EnemyBulletColliderComponent>();
+        if (enemyBulletColliderComponent != null)
+        {
+            Destroy(enemyBulletColliderComponent.gameObject);
+        }
+
+        if (enemyJet != null)
+        {
+            enemyJet.Die();
         }
     }
 }

@@ -26,7 +26,7 @@ public class EnemyHealthComponent : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Enemy jet destroyed!");
         if (explosionPrefab != null)

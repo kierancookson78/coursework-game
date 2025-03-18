@@ -7,15 +7,15 @@ public class EnemyInputHandler : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private AudioClip bulletAudio;
-    [SerializeField] private Transform player;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float bulletSpeed = 15f;
     [SerializeField] private float fireRate = 0.2f;
     [SerializeField] private float detectionDistance = 10f;
     [SerializeField] private float angleTolerance = 5f;
-    private float cooldownTimer = 0;
 
+    private float cooldownTimer = 0;
+    private Transform player;
     private ICommand moveCommand;
     private ICommand fireCommand;
 
@@ -29,6 +29,8 @@ public class EnemyInputHandler : MonoBehaviour
         {
             Debug.LogError("Fire point not assigned");
         }
+
+        player = FindAnyObjectByType<PlayerHealthComponent>().gameObject.transform;
     }
 
     void Update()

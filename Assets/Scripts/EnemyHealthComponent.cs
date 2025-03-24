@@ -6,13 +6,14 @@ public class EnemyHealthComponent : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
-    [SerializeField] private TextMeshProUGUI score;
+    private TextMeshProUGUI score;
     private int currentHealth;
     private static int playerScore = 0;
 
     void Start()
     {
         currentHealth = maxHealth;
+        score = GetComponent<TextMeshProUGUI>();
     }
 
     public void TakeDamage(int damage)

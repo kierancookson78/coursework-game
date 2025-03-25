@@ -36,7 +36,6 @@ public class EnemyHealthComponent : MonoBehaviour
             PlayExplosion();
         }
         playerScore += 100;
-        score.text = playerScore.ToString();
         Destroy(gameObject);
     }
 
@@ -46,5 +45,10 @@ public class EnemyHealthComponent : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
+    }
+
+    public static int GetPlayerScore()
+    {
+        return playerScore;
     }
 }

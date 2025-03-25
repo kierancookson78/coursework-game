@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,12 +7,18 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private TextMeshProUGUI scoreBoard;
     private int currentHealth;
     private bool isPlayerDead = false;
 
     void Start()
     {
         currentHealth = maxHealth;
+    }
+
+    void Update()
+    {
+        scoreBoard.text = EnemyHealthComponent.GetPlayerScore().ToString();
     }
 
     public void TakeDamage(int damage)

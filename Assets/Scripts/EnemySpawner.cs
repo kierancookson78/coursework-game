@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab; // Array of enemy prefabs to spawn
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnInterval = 2f; // Time between spawns
     [SerializeField] private float spawnRadius = 10f; // Radius within which enemies will spawn
     [SerializeField] private float playerSafeRadius = 3f;

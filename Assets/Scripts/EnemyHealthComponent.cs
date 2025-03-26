@@ -6,14 +6,11 @@ public class EnemyHealthComponent : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
-    private TextMeshProUGUI score;
     private int currentHealth;
-    private static int playerScore = 0;
 
     void Start()
     {
         currentHealth = maxHealth;
-        score = GetComponent<TextMeshProUGUI>();
     }
 
     public void TakeDamage(int damage)
@@ -34,8 +31,8 @@ public class EnemyHealthComponent : MonoBehaviour
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             PlayExplosion();
+            ScoreManager.Instance.EnemyKilled();
         }
-        playerScore += 100;
         Destroy(gameObject);
     }
 
@@ -45,10 +42,5 @@ public class EnemyHealthComponent : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
-    }
-
-    public static int GetPlayerScore()
-    {
-        return playerScore;
     }
 }

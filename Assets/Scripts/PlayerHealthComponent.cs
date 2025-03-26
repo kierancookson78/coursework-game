@@ -7,18 +7,16 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
-    [SerializeField] private TextMeshProUGUI scoreBoard;
+    [SerializeField] private TextMeshProUGUI currentUserText;
+    [SerializeField] private TextMeshProUGUI currentUserHighScoreText;
     private int currentHealth;
     private bool isPlayerDead = false;
 
     void Start()
     {
+        currentUserHighScoreText.text = "High Score: " + UserManager.Instance.GetHighScore().ToString();
+        currentUserText.text = UserManager.Instance.GetUsername();
         currentHealth = maxHealth;
-    }
-
-    void Update()
-    {
-        scoreBoard.text = EnemyHealthComponent.GetPlayerScore().ToString();
     }
 
     public void TakeDamage(int damage)
@@ -34,6 +32,7 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public void Die()
     {
+        int newScore = ScoreManager.Instance.GetScore();
         Debug.Log("Player jet destroyed!");
         if (!isPlayerDead)
         {
@@ -41,6 +40,7 @@ public class PlayerHealthComponent : MonoBehaviour
             {
                 Instantiate(explosionPrefab, transform.position, Quaternion.identity);
                 PlayExplosion();
+                UserManager.Instance.UpdateHighScore(newScore);
             }
             Invoke("GameOver", 0.767f);
         }

@@ -5,16 +5,7 @@ using UnityEngine.SceneManagement;
 public class LoginAndRegistration : MonoBehaviour
 {
     [SerializeField] private TMP_InputField usernameInputField;
-    [SerializeField] private UserManager userManager; // Assign your UserManager in the Inspector
-    [SerializeField] private TextMeshProUGUI messageText; // Optional: For feedback messages
-
-    void Start()
-    {
-        if (userManager == null)
-        {
-            Debug.LogError("UserManager not assigned in the Inspector!");
-        }
-    }
+    [SerializeField] private TextMeshProUGUI messageText;
 
     public void OnLoginButtonClick()
     {
@@ -29,7 +20,7 @@ public class LoginAndRegistration : MonoBehaviour
             return;
         }
 
-        if (userManager.LoadUser(username))
+        if (UserManager.Instance.LoadUser(username))
         {
             if (messageText != null)
             {
@@ -37,11 +28,11 @@ public class LoginAndRegistration : MonoBehaviour
             }
             // User loaded, proceed to game or next scene
             Debug.Log("User loaded");
-            SceneManager.LoadSceneAsync(2);
+            SceneManager.LoadSceneAsync(5);
         }
         else
         {
-            if (userManager.CreateUser(username))
+            if (UserManager.Instance.CreateUser(username))
             {
                 if (messageText != null)
                 {
@@ -49,7 +40,7 @@ public class LoginAndRegistration : MonoBehaviour
                 }
                 // User created, proceed to game or next scene
                 Debug.Log("User Created");
-                SceneManager.LoadSceneAsync(2);
+                SceneManager.LoadSceneAsync(5);
             }
             else
             {

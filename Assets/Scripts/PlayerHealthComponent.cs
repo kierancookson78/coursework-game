@@ -10,10 +10,12 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentUserText;
     [SerializeField] private TextMeshProUGUI currentUserHighScoreText;
     private int currentHealth;
+    private LeaderboardService leaderboardService;
     private bool isPlayerDead = false;
 
     void Start()
     {
+        leaderboardService = FindFirstObjectByType<LeaderboardService>();
         currentUserHighScoreText.text = "High Score: " + UserManager.Instance.GetHighScore().ToString();
         currentUserText.text = UserManager.Instance.GetUsername();
         currentHealth = maxHealth;
@@ -40,8 +42,8 @@ public class PlayerHealthComponent : MonoBehaviour
             {
                 Instantiate(explosionPrefab, transform.position, Quaternion.identity);
                 PlayExplosion();
-                UserManager.Instance.UpdateHighScore(newScore);
             }
+            leaderboardService.AddScore(newScore);
             Invoke("GameOver", 0.767f);
         }
         isPlayerDead = true;

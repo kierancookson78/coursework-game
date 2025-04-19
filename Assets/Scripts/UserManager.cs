@@ -132,4 +132,9 @@ public class UserManager : MonoBehaviour
             users = new Dictionary<string, UserData>();
         }
     }
+
+    public Dictionary<string, UserData> GetUsers() 
+    {
+        return users;
+    }
 }

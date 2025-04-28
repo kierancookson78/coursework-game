@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealthComponent : MonoBehaviour
 {
@@ -9,9 +10,13 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private TextMeshProUGUI currentUserText;
     [SerializeField] private TextMeshProUGUI currentUserHighScoreText;
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Image fillImage;
     private int currentHealth;
     private LeaderboardService leaderboardService;
     private bool isPlayerDead = false;
+    private Color lowHealthColor = Color.red;
+    private Color highHealthColor = Color.green;
 
     void Start()
     {
@@ -19,6 +24,7 @@ public class PlayerHealthComponent : MonoBehaviour
         currentUserHighScoreText.text = "High Score: " + UserManager.Instance.GetHighScore().ToString();
         currentUserText.text = UserManager.Instance.GetUsername();
         currentHealth = maxHealth;
+        UpdateHealthBarColor();
     }
 
     public void TakeDamage(int damage)
@@ -30,6 +36,8 @@ public class PlayerHealthComponent : MonoBehaviour
         {
             Die();
         }
+        UpdateHealthBarColor();
+        UpdateHealthBar();
     }
 
     public void Die()
@@ -60,5 +68,25 @@ public class PlayerHealthComponent : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadSceneAsync(3);
+    }
+
+    void UpdateHealthBar()
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHealth;
+        }
+    }
+
+    void UpdateHealthBarColor()
+    {
+        if (fillImage != null)
+        {
+            // Calculate the health percentage (0 to 1)
+            float healthPercentage = currentHealth / maxHealth;
+
+            // Use Color.Lerp to smoothly interpolate between the two colors
+            fillImage.color = Color.Lerp(lowHealthColor, highHealthColor, healthPercentage);
+        }
     }
 }

@@ -5,7 +5,7 @@ public class Nuke : PowerUp
     private string targetTag = "Enemy";
     public override void UsePowerUp(AudioClip soundEffect, Vector3 effectPosition, GameObject animationPrefab, Quaternion animationRotation)
     {
-        PlayAnimation(animationPrefab, effectPosition, animationRotation);
+        PlayAnimation(animationPrefab, effectPosition, animationRotation, new Vector3(1000, 1000, 1000));
         PlaySoundEffect(soundEffect, effectPosition);
 
         GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(targetTag);

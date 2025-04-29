@@ -9,9 +9,10 @@ public abstract class PowerUp
         AudioSource.PlayClipAtPoint(soundEffect, soundPosition);
     }
 
-    protected void PlayAnimation(GameObject animationPrefab, Vector3 animationPosition, Quaternion animationRotation) 
+    protected void PlayAnimation(GameObject animationPrefab, Vector3 animationPosition, Quaternion animationRotation, Vector3 scale) 
     {
-        GameObject.Instantiate(animationPrefab, animationPosition, animationRotation);
+        GameObject animation = GameObject.Instantiate(animationPrefab, animationPosition, animationRotation);
+        animation.transform.localScale = scale;
     }
     public abstract void UsePowerUp(AudioClip soundEffect, Vector3 effectPosition, GameObject animationPrefab, Quaternion animationRotation);
 }

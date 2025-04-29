@@ -10,7 +10,7 @@ public class PowerUpAdder : MonoBehaviour
         CannonBlast cannonBlast = new CannonBlast();
         Nuke nuke = new Nuke();
         PowerUpHotbar.AddPowerUpToSlot(shield, 0);
-        PowerUpHotbar.AddPowerUpToSlot(nuke, 1);
-        PowerUpHotbar.AddPowerUpToSlot(cannonBlast, 2);
+        PowerUpHotbar.AddPowerUpToSlot(cannonBlast, 1);
+        PowerUpHotbar.AddPowerUpToSlot(nuke, 2);
     }
 }

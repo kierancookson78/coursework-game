@@ -3,7 +3,6 @@ using UnityEngine;
 
 public abstract class PowerUp
 {
-    public abstract void UsePowerUp();
 
     protected void PlaySoundEffect(AudioClip soundEffect, Vector3 soundPosition)
     {
@@ -14,9 +13,5 @@ public abstract class PowerUp
     {
         GameObject.Instantiate(animationPrefab, animationPosition, animationRotation);
     }
-
-    protected void AddPowerUp(PowerUp powerUp)
-    {
-        throw new NotImplementedException ();
-    }
+    public abstract void UsePowerUp(AudioClip soundEffect, Vector3 effectPosition, GameObject animationPrefab, Quaternion animationRotation);
 }

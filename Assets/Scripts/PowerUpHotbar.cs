@@ -5,15 +5,16 @@ using System.Linq;
 
 public class PowerUpHotbar : MonoBehaviour
 {
+    [SerializeField] private Transform playerJet;
     public PowerUp[] powerUpSlots = new PowerUp[3];
     private int selectedSlot = 0;
 
     [Header("UI Elements")]
-    public Image[] hotbarImages; // Assign Image components in the Inspector
-    public Image selectionIndicator; // Assign an Image to indicate selection
+    [SerializeField] private Image[] hotbarImages; // Assign Image components in the Inspector
+    [SerializeField] private Image selectionIndicator; // Assign an Image to indicate selection
 
     [Header("Power-up Icons")]
-    public PowerUpIconData[] powerUpIconData; // Array of structs, assign in inspector.
+    [SerializeField] private PowerUpIconData[] powerUpIconData;
 
     [System.Serializable]
     public struct PowerUpIconData
@@ -21,6 +22,10 @@ public class PowerUpHotbar : MonoBehaviour
         public string powerUpName; // Name of the PowerUp class (e.g., "SpeedBoost", "Invisibility")
         public Sprite icon;       // The icon for that power-up
     }
+
+    [Header("Nuke Power Up")]
+    [SerializeField] private AudioClip nukeSound;
+    [SerializeField] private GameObject explosionPrefab;
 
     void Start()
     {
@@ -70,7 +75,8 @@ public class PowerUpHotbar : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && powerUpSlots[selectedSlot] != null)
         {
             Debug.Log($"Using Power-up in Slot {selectedSlot + 1}: {powerUpSlots[selectedSlot].GetType().Name}");
-            //powerUpSlots[selectedSlot].UsePowerUp();
+            powerUpSlots[selectedSlot].UsePowerUp(nukeSound, playerJet.position, explosionPrefab, playerJet.rotation);
+            RemovePowerUpFromSlot(selectedSlot);
         }
     }
 

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6871861413280417638}
   m_Layer: 0
   m_Name: Enemy Jet
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2484620901813203919, guid: 1aa6719f75e269646ae331152d4ddacf, type: 3}
   firePoint: {fileID: 6655932907892363719}
   bulletAudio: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
-  player: {fileID: 485614, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
   moveSpeed: 5
   rotationSpeed: 5
   bulletSpeed: 15

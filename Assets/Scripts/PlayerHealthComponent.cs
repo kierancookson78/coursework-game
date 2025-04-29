@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,10 @@ public class PlayerHealthComponent : MonoBehaviour
     private LeaderboardService leaderboardService;
     private bool isPlayerDead = false;
     private Color lowHealthColor = Color.red;
+    private Color medHealthColor = Color.yellow;
     private Color highHealthColor = Color.green;
+    private float cooldownTimer = 0;
+    private float regenDelay = 1;
 
     void Start()
     {
@@ -25,6 +29,22 @@ public class PlayerHealthComponent : MonoBehaviour
         currentUserText.text = UserManager.Instance.GetUsername();
         currentHealth = maxHealth;
         UpdateHealthBarColor();
+    }
+
+    void Update()
+    {
+        cooldownTimer -= Time.deltaTime;
+        if (!Input.GetMouseButton(0) && cooldownTimer <= 0)
+        {
+            cooldownTimer = regenDelay;
+            currentHealth += 2;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+            UpdateHealthBarColor();
+            UpdateHealthBar();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -82,11 +102,17 @@ public class PlayerHealthComponent : MonoBehaviour
     {
         if (fillImage != null)
         {
-            // Calculate the health percentage (0 to 1)
-            float healthPercentage = currentHealth / maxHealth;
-
-            // Use Color.Lerp to smoothly interpolate between the two colors
-            fillImage.color = Color.Lerp(lowHealthColor, highHealthColor, healthPercentage);
+            if (currentHealth > 50)
+            {
+                fillImage.color = highHealthColor;
+            } else if (currentHealth <= 50 && currentHealth > 25)
+            {
+                fillImage.color = medHealthColor;
+            }
+            else if (currentHealth <= 25)
+            {
+                fillImage.color = lowHealthColor;
+            }
         }
     }
 }

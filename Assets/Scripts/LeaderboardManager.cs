@@ -47,6 +47,7 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
 
     public string GetLeaderboard()
     {
+        string currentUser = UserManager.Instance.GetUsername();
         if (leaderboardData == null)
         {
             UpdateLeaderboard();
@@ -58,10 +59,18 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
         }
 
         string leaderboardString = "--- HIGH SCORES ---\n";
+        leaderboardString += "Current User ** \n";
         int rank = 1;
         foreach (LeaderboardEntry entry in leaderboardData.entries)
         {
-            leaderboardString += $"{rank}. {entry.username}: {entry.highScore}\n";
+            if (entry.username == currentUser)
+            {
+                leaderboardString += $"{rank}. {entry.username}: {entry.highScore} **\n";
+            }
+            else
+            {
+                leaderboardString += $"{rank}. {entry.username}: {entry.highScore}\n";
+            }
             rank++;
         }
         return leaderboardString;

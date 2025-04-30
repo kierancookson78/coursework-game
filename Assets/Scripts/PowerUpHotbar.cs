@@ -32,11 +32,14 @@ public class PowerUpHotbar : MonoBehaviour
 
     private PlayerController playerController;
     private PlayerHealthComponent healthComponent;
+    private PowerUpAdder powerUpAdder;
     private bool isCannonActive = false;
+    private bool isNukeUsed = false;
     void Start()
     {
         healthComponent = FindAnyObjectByType<PlayerHealthComponent>();
         playerController = FindAnyObjectByType<PlayerController>();
+        powerUpAdder = GetComponent<PowerUpAdder>();
         // Ensure the UI arrays are the correct size
         if (hotbarImages.Length != powerUpSlots.Length)
         {
@@ -86,14 +89,18 @@ public class PowerUpHotbar : MonoBehaviour
             if (selectedSlot == 0)
             {
                 powerUpSlots[selectedSlot].UsePowerUp(healthComponent, shieldBar);
+                powerUpAdder.LockShield();
             } else if (selectedSlot == 1)
             {
                 powerUpSlots[selectedSlot].UsePowerUp(this, playerController);
+                powerUpAdder.LockCannon();
                 Invoke("DeactivateCannon", 15f);
             }
             else
             {
                 powerUpSlots[selectedSlot].UsePowerUp(nukeSound, playerJet.position, explosionPrefab, playerJet.rotation);
+                powerUpAdder.LockNuke();
+                isNukeUsed = true;
             }
             RemovePowerUpFromSlot(selectedSlot);
         }
@@ -188,6 +195,11 @@ public class PowerUpHotbar : MonoBehaviour
     public bool GetCannonStatus()
     {
         return isCannonActive;
+    }
+
+    public bool NukeHasBeenUsed()
+    {
+        return isNukeUsed;
     }
 
     private void DeactivateCannon() 

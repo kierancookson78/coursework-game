@@ -41,7 +41,7 @@ public class PlayerHealthComponent : MonoBehaviour
         if (!Input.GetMouseButton(0) && cooldownTimer <= 0)
         {
             cooldownTimer = regenDelay;
-            currentHealth += 2;
+            currentHealth += 4;
             if (currentHealth > maxHealth)
             {
                 currentHealth = maxHealth;
@@ -71,6 +71,7 @@ public class PlayerHealthComponent : MonoBehaviour
             { 
                 shieldSlider.gameObject.SetActive(false);
                 isShieldActive = false;
+                shield = 50;
             }
             shieldSlider.value = shield;
         }

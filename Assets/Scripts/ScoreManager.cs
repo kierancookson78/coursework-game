@@ -7,7 +7,11 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; } // Singleton instance
 
     public TextMeshProUGUI scoreText;
+    private PowerUpAdder powerUpAdder;
     private int currentScore = 0;
+    private int shieldStreak = 0;
+    private int cannonStreak = 0;
+    private int nukeStreak = 0;
 
     private void Awake()
     {
@@ -26,6 +30,11 @@ public class ScoreManager : MonoBehaviour
         }
 
         UpdateScoreText(); // Initialize the text at start.
+    }
+
+    void Start()
+    {
+        powerUpAdder = FindAnyObjectByType<PowerUpAdder>();
     }
 
     public void AddScore(int scoreToAdd)
@@ -48,11 +57,57 @@ public class ScoreManager : MonoBehaviour
 
     public void EnemyKilled()
     {
+        bool isSheildUnlocked = powerUpAdder.ShieldIsUnlocked();
+        bool isCannonUnlocked = powerUpAdder.CannonIsUnlocked();
+        bool isNukeUnlocked = powerUpAdder.NukeIsUnlocked();
+
+        if (!isSheildUnlocked)
+        {
+            shieldStreak++;
+        }
+        if (!isCannonUnlocked)
+        {
+            cannonStreak++;
+        }
+        if (!isNukeUnlocked)
+        {
+            nukeStreak++;
+        }
         AddScore(100);
     }
 
     public int GetScore()
     {
         return currentScore;
+    }
+
+    public int GetShieldStreak()
+    {
+        return shieldStreak;
+    }
+
+    public int GetCannonStreak()
+    {
+        return cannonStreak;
+    }
+
+    public int GetNukeStreak()
+    {
+        return nukeStreak;
+    }
+
+    public void ResetShieldStreak()
+    {
+        shieldStreak = 0;
+    }
+
+    public void ResetCannonStreak()
+    {
+        cannonStreak = 0;
+    }
+
+    public void ResetNukeStreak()
+    {
+        nukeStreak = 0;
     }
 }

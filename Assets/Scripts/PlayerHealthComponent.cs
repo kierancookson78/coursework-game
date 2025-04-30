@@ -12,8 +12,11 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentUserText;
     [SerializeField] private TextMeshProUGUI currentUserHighScoreText;
     [SerializeField] private Slider healthSlider;
-    [SerializeField] private Image fillImage;
+    [SerializeField] private Image healthfillImage;
+    [SerializeField] private Slider shieldSlider;
     private int currentHealth;
+    private int shield = 50;
+    private bool isShieldActive = false;
     private LeaderboardService leaderboardService;
     private bool isPlayerDead = false;
     private Color lowHealthColor = Color.red;
@@ -28,6 +31,7 @@ public class PlayerHealthComponent : MonoBehaviour
         currentUserHighScoreText.text = "High Score: " + UserManager.Instance.GetHighScore().ToString();
         currentUserText.text = UserManager.Instance.GetUsername();
         currentHealth = maxHealth;
+        shieldSlider.gameObject.SetActive(false);
         UpdateHealthBarColor();
     }
 
@@ -49,15 +53,27 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Player jet took " + damage + " damage. Current health: " + currentHealth);
-
-        if (currentHealth <= 0)
+        if (!isShieldActive)
         {
-            Die();
+            currentHealth -= damage;
+            Debug.Log("Player jet took " + damage + " damage. Current health: " + currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+            UpdateHealthBarColor();
+            UpdateHealthBar();
+        } else
+        {
+            shield -= damage;
+            if (shield <= 0) 
+            { 
+                shieldSlider.gameObject.SetActive(false);
+                isShieldActive = false;
+            }
+            shieldSlider.value = shield;
         }
-        UpdateHealthBarColor();
-        UpdateHealthBar();
     }
 
     public void Die()
@@ -100,19 +116,24 @@ public class PlayerHealthComponent : MonoBehaviour
 
     void UpdateHealthBarColor()
     {
-        if (fillImage != null)
+        if (healthfillImage != null)
         {
             if (currentHealth > 50)
             {
-                fillImage.color = highHealthColor;
+                healthfillImage.color = highHealthColor;
             } else if (currentHealth <= 50 && currentHealth > 25)
             {
-                fillImage.color = medHealthColor;
+                healthfillImage.color = medHealthColor;
             }
             else if (currentHealth <= 25)
             {
-                fillImage.color = lowHealthColor;
+                healthfillImage.color = lowHealthColor;
             }
         }
+    }
+
+    public void ActivateShield()
+    {
+        isShieldActive = true;
     }
 }

@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class CannonBlast : PowerUp
 {
-    public override void UsePowerUp(AudioClip soundEffect, Vector3 effectPosition, GameObject animationPrefab, Quaternion animationRotation)
+    public override void UsePowerUp(PowerUpHotbar powerUpHotbar, PlayerController playerController)
     {
-        throw new System.NotImplementedException();
+        powerUpHotbar.ActivateCannon();
+        playerController.MultiplyBulletSpeed();
+        playerController.MultiplyFireRate();
     }
 }

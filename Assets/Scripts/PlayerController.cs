@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float bulletSpeed = 15f;
     [SerializeField] private float fireRate = 0.2f;
     private float cooldownTimer = 0;
+    private PowerUpHotbar powerUpHotbar;
 
     private ICommand moveCommand;
     private ICommand fireCommand;
 
     void Start()
     {
+        powerUpHotbar = FindAnyObjectByType<PowerUpHotbar>();
         if (planeRigidbody == null)
         {
             Debug.LogError("Plane transform not assigned");
@@ -46,8 +48,28 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0) && cooldownTimer <= 0)
         {
             cooldownTimer = fireRate;
-            fireCommand = new FireCommand(bulletPrefab, firePoint, bulletAudio, bulletSpeed);
+            fireCommand = new FireCommand(bulletPrefab, firePoint, bulletAudio, bulletSpeed, powerUpHotbar);
             fireCommand.Execute();
         }
+    }
+
+    public void MultiplyFireRate()
+    {
+        fireRate = fireRate / 2;
+    }
+
+    public void MultiplyBulletSpeed()
+    {
+        bulletSpeed = bulletSpeed * 2;
+    }
+
+    public void ResetFireRate()
+    {
+        fireRate = fireRate * 2;
+    }
+
+    public void ResetBulletSpeed()
+    {
+        bulletSpeed = bulletSpeed / 2;
     }
 }

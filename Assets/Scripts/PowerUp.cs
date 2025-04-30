@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class PowerUp
 {
@@ -14,5 +15,7 @@ public abstract class PowerUp
         GameObject animation = GameObject.Instantiate(animationPrefab, animationPosition, animationRotation);
         animation.transform.localScale = scale;
     }
-    public abstract void UsePowerUp(AudioClip soundEffect, Vector3 effectPosition, GameObject animationPrefab, Quaternion animationRotation);
+    public virtual void UsePowerUp(AudioClip soundEffect, Vector3 effectPosition, GameObject animationPrefab, Quaternion animationRotation) { }
+    public virtual void UsePowerUp(PlayerHealthComponent playerHealthComponent, Slider shieldBar) { }
+    public virtual void UsePowerUp(PowerUpHotbar powerUpHotbar, PlayerController playerController) { }
 }

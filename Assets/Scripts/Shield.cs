@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shield : PowerUp
 {
-    public override void UsePowerUp(AudioClip soundEffect, Vector3 effectPosition, GameObject animationPrefab, Quaternion animationRotation)
+    public override void UsePowerUp(PlayerHealthComponent playerHealthComponent, Slider shieldBar)
     {
-        throw new System.NotImplementedException();
+        shieldBar.gameObject.SetActive(true);
+        playerHealthComponent.ActivateShield();
     }
 }

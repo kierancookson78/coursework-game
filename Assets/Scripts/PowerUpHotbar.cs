@@ -27,8 +27,16 @@ public class PowerUpHotbar : MonoBehaviour
     [SerializeField] private AudioClip nukeSound;
     [SerializeField] private GameObject explosionPrefab;
 
+    [Header("Shield Power Up")]
+    [SerializeField] private Slider shieldBar;
+
+    private PlayerController playerController;
+    private PlayerHealthComponent healthComponent;
+    private bool isCannonActive = false;
     void Start()
     {
+        healthComponent = FindAnyObjectByType<PlayerHealthComponent>();
+        playerController = FindAnyObjectByType<PlayerController>();
         // Ensure the UI arrays are the correct size
         if (hotbarImages.Length != powerUpSlots.Length)
         {
@@ -75,7 +83,18 @@ public class PowerUpHotbar : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && powerUpSlots[selectedSlot] != null)
         {
             Debug.Log($"Using Power-up in Slot {selectedSlot + 1}: {powerUpSlots[selectedSlot].GetType().Name}");
-            powerUpSlots[selectedSlot].UsePowerUp(nukeSound, playerJet.position, explosionPrefab, playerJet.rotation);
+            if (selectedSlot == 0)
+            {
+                powerUpSlots[selectedSlot].UsePowerUp(healthComponent, shieldBar);
+            } else if (selectedSlot == 1)
+            {
+                powerUpSlots[selectedSlot].UsePowerUp(this, playerController);
+                Invoke("DeactivateCannon", 15f);
+            }
+            else
+            {
+                powerUpSlots[selectedSlot].UsePowerUp(nukeSound, playerJet.position, explosionPrefab, playerJet.rotation);
+            }
             RemovePowerUpFromSlot(selectedSlot);
         }
     }
@@ -159,6 +178,23 @@ public class PowerUpHotbar : MonoBehaviour
         {
             selectionIndicator.gameObject.SetActive(false); // Hide if no valid slot is selected
         }
+    }
+
+    public void ActivateCannon()
+    {
+        isCannonActive = true;
+    }
+
+    public bool GetCannonStatus()
+    {
+        return isCannonActive;
+    }
+
+    private void DeactivateCannon() 
+    { 
+        isCannonActive = false;
+        playerController.ResetBulletSpeed();
+        playerController.ResetFireRate();
     }
 }
 

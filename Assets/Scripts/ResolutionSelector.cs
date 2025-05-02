@@ -18,7 +18,7 @@ public class ResolutionSelector : MonoBehaviour
         // Populate the dropdown with resolution options
         foreach (Resolution res in resolutions)
         {
-            resolutionOptions.Add(res.width + " x " + res.height);
+            resolutionOptions.Add(res.width + " x " + res.height + " @ " + res.refreshRateRatio + "Hz");
         }
         resolutionDropdown.AddOptions(resolutionOptions);
 
@@ -39,7 +39,7 @@ public class ResolutionSelector : MonoBehaviour
     {
         // Set the selected resolution
         Resolution selectedResolution = resolutions[selectedResolutionIndex];
-        Screen.SetResolution(selectedResolution.width, selectedResolution.height, true);
+        Screen.SetResolution(selectedResolution.width, selectedResolution.height, FullScreenMode.ExclusiveFullScreen, selectedResolution.refreshRateRatio);
 
         // Save the selected resolution index
         PlayerPrefs.SetInt("ResolutionIndex", selectedResolutionIndex);
@@ -55,7 +55,7 @@ public class ResolutionSelector : MonoBehaviour
         {
             // Apply the saved resolution
             Resolution savedResolution = resolutions[savedResolutionIndex];
-            Screen.SetResolution(savedResolution.width, savedResolution.height, true);
+            Screen.SetResolution(savedResolution.width, savedResolution.height, FullScreenMode.ExclusiveFullScreen, savedResolution.refreshRateRatio);
             resolutionDropdown.value = savedResolutionIndex;
             selectedResolutionIndex = savedResolutionIndex; // Keep track of loaded resolution
         }
@@ -72,7 +72,7 @@ public class ResolutionSelector : MonoBehaviour
                 }
             }
             Resolution defaultResolution = resolutions[currentResolutionIndex];
-            Screen.SetResolution(defaultResolution.width, defaultResolution.height, true);
+            Screen.SetResolution(defaultResolution.width, defaultResolution.height, FullScreenMode.ExclusiveFullScreen, Screen.currentResolution.refreshRateRatio);
             resolutionDropdown.value = currentResolutionIndex;
             PlayerPrefs.SetInt("ResolutionIndex", currentResolutionIndex);
             PlayerPrefs.Save();

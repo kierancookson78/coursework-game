@@ -18,7 +18,7 @@ public class LoadResolution : MonoBehaviour
         {
             // Apply the saved resolution
             Resolution savedResolution = resolutions[savedResolutionIndex];
-            Screen.SetResolution(savedResolution.width, savedResolution.height, true);
+            Screen.SetResolution(savedResolution.width, savedResolution.height, FullScreenMode.ExclusiveFullScreen, savedResolution.refreshRateRatio);
         }
         else
         {
@@ -33,7 +33,7 @@ public class LoadResolution : MonoBehaviour
                 }
             }
             Resolution defaultResolution = resolutions[currentResolutionIndex];
-            Screen.SetResolution(defaultResolution.width, defaultResolution.height, true);
+            Screen.SetResolution(defaultResolution.width, defaultResolution.height, FullScreenMode.ExclusiveFullScreen, Screen.currentResolution.refreshRateRatio);
             PlayerPrefs.SetInt("ResolutionIndex", currentResolutionIndex);
             PlayerPrefs.Save();
         }

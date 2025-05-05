@@ -23,14 +23,7 @@ public class InfiniteGroundSimple : MonoBehaviour
 
     void Update()
     {
-        if (cameraTransform != null)
-        {
-            transform.position = new Vector3(cameraTransform.position.x, initialYPosition, transform.position.z);
-        }
-        else
-        {
-            Debug.LogError("Main camera not found!");
-        }
+        transform.position = new Vector3(cameraTransform.position.x, initialYPosition, transform.position.z);
     }
 
     void ScaleGroundToCameraWidth()

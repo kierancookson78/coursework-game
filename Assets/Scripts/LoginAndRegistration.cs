@@ -28,7 +28,7 @@ public class LoginAndRegistration : MonoBehaviour
             }
             // User loaded, proceed to game or next scene
             Debug.Log("User loaded");
-            SceneManager.LoadSceneAsync(5);
+            SceneManager.LoadSceneAsync(5, LoadSceneMode.Single);
         }
         else
         {
@@ -40,7 +40,7 @@ public class LoginAndRegistration : MonoBehaviour
                 }
                 // User created, proceed to game or next scene
                 Debug.Log("User Created");
-                SceneManager.LoadSceneAsync(5);
+                SceneManager.LoadSceneAsync(5, LoadSceneMode.Single);
             }
             else
             {

@@ -7,7 +7,7 @@ public class LaunchMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(4);
+        SceneManager.LoadSceneAsync(4, LoadSceneMode.Single);
     }
 
     public void QuitGame()
@@ -17,6 +17,6 @@ public class LaunchMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
     }
 }

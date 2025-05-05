@@ -32,6 +32,7 @@ public class PlayerHealthComponent : MonoBehaviour
         currentUserText.text = UserManager.Instance.GetUsername();
         currentHealth = maxHealth;
         shieldSlider.gameObject.SetActive(false);
+        Cursor.visible = false;
         UpdateHealthBarColor();
     }
 
@@ -104,7 +105,8 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadSceneAsync(3);
+        SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
+        Cursor.visible = true;
     }
 
     void UpdateHealthBar()

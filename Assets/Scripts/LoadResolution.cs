@@ -6,6 +6,7 @@ public class LoadResolution : MonoBehaviour
     void Start()
     {
         resolutions = Screen.resolutions;
+        Cursor.lockState = CursorLockMode.Confined;
         ApplyResolution();
     }
 

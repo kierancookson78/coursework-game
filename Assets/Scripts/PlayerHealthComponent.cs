@@ -17,7 +17,6 @@ public class PlayerHealthComponent : MonoBehaviour
     private int currentHealth;
     private int shield = 50;
     private bool isShieldActive = false;
-    private LeaderboardService leaderboardService;
     private bool isPlayerDead = false;
     private Color lowHealthColor = Color.red;
     private Color medHealthColor = Color.yellow;
@@ -27,7 +26,6 @@ public class PlayerHealthComponent : MonoBehaviour
 
     void Start()
     {
-        leaderboardService = FindFirstObjectByType<LeaderboardService>();
         currentUserHighScoreText.text = "High Score: " + UserManager.Instance.GetHighScore().ToString();
         currentUserText.text = UserManager.Instance.GetUsername();
         currentHealth = maxHealth;
@@ -80,7 +78,6 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public void Die()
     {
-        int newScore = ScoreManager.Instance.GetScore();
         Debug.Log("Player jet destroyed!");
         if (!isPlayerDead)
         {
@@ -89,7 +86,6 @@ public class PlayerHealthComponent : MonoBehaviour
                 Instantiate(explosionPrefab, transform.position, Quaternion.identity);
                 PlayExplosion();
             }
-            leaderboardService.AddScore(newScore);
             Invoke("GameOver", 0.767f);
         }
         isPlayerDead = true;

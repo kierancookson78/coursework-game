@@ -24,6 +24,7 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
     private LeaderboardData leaderboardData;
     private string leaderboardSavePath;
     private const string LeaderboardFileName = "leaderboard.dat"; // Consistent file name
+    private int previousUserRank = -1; // To track rank changes
 
     void Awake()
     {
@@ -41,13 +42,13 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
         }
         else
         {
-            Debug.LogError("UserManager instance not found. Cannot update high score.");
+            Debug.LogError("UserManager singleton instance not found. Cannot update high score.");
         }
     }
 
     public string GetLeaderboard()
     {
-        string currentUser = UserManager.Instance.GetUsername();
+        string currentUser = UserManager.Instance?.GetUsername();
         if (leaderboardData == null)
         {
             UpdateLeaderboard();
@@ -76,11 +77,46 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
         return leaderboardString;
     }
 
+    public (int currentRank, int scoreToNextRank) GetUserLeaderboardInfo()
+    {
+        if (UserManager.Instance == null || leaderboardData == null || leaderboardData.entries == null)
+        {
+            return (-1, -1); // Indicate error or no data
+        }
+
+        string currentUser = UserManager.Instance.GetUsername();
+        int curentScore = ScoreManager.Instance.GetScore();
+        int userRank = -1;
+        int scoreToNextRank = -1;
+
+        // Sort the leaderboard entries by score in descending order
+        List<LeaderboardEntry> sortedEntries = leaderboardData.entries.OrderByDescending(entry => entry.highScore).ToList();
+
+        for (int i = 0; i < sortedEntries.Count; i++)
+        {
+            if (sortedEntries[i].username == currentUser)
+            {
+                userRank = i + 1;
+                if (i > 0) // If not in the first place
+                {
+                    scoreToNextRank = sortedEntries[i - 1].highScore - curentScore + 100;
+                }
+                else
+                {
+                    scoreToNextRank = 0; // Already in first place
+                }
+                break;
+            }
+        }
+
+        return (userRank, scoreToNextRank);
+    }
+
     private void UpdateLeaderboard()
     {
         if (UserManager.Instance == null)
         {
-            Debug.LogError("UserManager instance not found. Cannot update leaderboard cache.");
+            Debug.LogError("UserManager singleton instance not found. Cannot update leaderboard cache.");
             return;
         }
 
@@ -109,12 +145,26 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
             lastUpdated = DateTime.Now
         };
         SaveLeaderboard();
+
+        // Update the previous user rank after the leaderboard is updated
+        if (ScoreManager.Instance != null)
+        {
+            (previousUserRank, _) = GetUserLeaderboardInfo();
+        }
     }
 
     private List<UserData> GetAllUsers()
     {
-        Dictionary<string, UserData> users = UserManager.Instance.GetUsers();
-        return users.Values.ToList();
+        if (UserManager.Instance != null)
+        {
+            Dictionary<string, UserData> users = UserManager.Instance.GetUsers();
+            return users.Values.ToList();
+        }
+        else
+        {
+            Debug.LogError("UserManager singleton instance not found. Cannot retrieve user data.");
+            return new List<UserData>();
+        }
     }
 
     private void SaveLeaderboard()
@@ -146,6 +196,12 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
         {
             Debug.Log("No leaderboard data file found. Creating a new one.");
             leaderboardData = null; // Initialize to null
+        }
+
+        // Initialize previous user rank on load
+        if (ScoreManager.Instance != null)
+        {
+            (previousUserRank, _) = GetUserLeaderboardInfo();
         }
     }
 }

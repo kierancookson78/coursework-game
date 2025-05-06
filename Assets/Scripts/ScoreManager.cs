@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,12 +7,17 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; } // Singleton instance
 
-    public TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI rankText;
+    [SerializeField] private TextMeshProUGUI rankedUpText;
+    private LeaderboardService leaderboardService;
     private PowerUpAdder powerUpAdder;
     private int currentScore = 0;
     private int shieldStreak = 0;
     private int cannonStreak = 0;
     private int nukeStreak = 0;
+    private int playerRank = 0;
+    private int scoreToNextRank = 0;
 
     private void Awake()
     {
@@ -19,22 +25,25 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // Optionally, prevent the object from being destroyed when loading new scenes:
-            // DontDestroyOnLoad(gameObject);
         }
         else
         {
             Debug.LogWarning("ScoreManager already exists! Destroying duplicate.");
             Destroy(gameObject);
-            return; // Important: Exit to prevent further execution
+            return;
         }
 
-        UpdateScoreText(); // Initialize the text at start.
+        UpdateScoreText();
     }
 
     void Start()
     {
         powerUpAdder = FindAnyObjectByType<PowerUpAdder>();
+        leaderboardService = UserManager.Instance.GetComponent<LeaderboardService>();
+        (int currentRank, int scoreToNext) = leaderboardService.GetUserLeaderboardInfo();
+        playerRank = currentRank;
+        scoreToNextRank = scoreToNext;
+        rankText.text = "Current Rank: " + playerRank + "\n" + "Score to rank up: " + scoreToNextRank;
     }
 
     public void AddScore(int scoreToAdd)
@@ -73,7 +82,26 @@ public class ScoreManager : MonoBehaviour
         {
             nukeStreak++;
         }
+
         AddScore(100);
+        leaderboardService.AddScore(currentScore);
+        (int currentRank, int scoreToNext) = leaderboardService.GetUserLeaderboardInfo();
+        int lastRank = playerRank;
+        playerRank = currentRank;
+        scoreToNextRank = scoreToNext;
+
+        rankText.text = "Current Rank: " + playerRank + "\n" + "Score to rank up: " + scoreToNextRank;
+
+        if (lastRank > playerRank)
+        {
+            Debug.Log("Ranked Up");
+            RankedUp();
+        }
+    }
+
+    private void RankedUp()
+    {
+        rankedUpText.text = "You ranked up!";
     }
 
     public int GetScore()

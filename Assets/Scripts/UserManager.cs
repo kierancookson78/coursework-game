@@ -17,6 +17,7 @@ public class UserManager : MonoBehaviour
     private Dictionary<string, UserData> users = new Dictionary<string, UserData>();
     private string saveFilePath;
     private UserData currentUser;
+    private LeaderboardService LeaderboardService;
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class UserManager : MonoBehaviour
         LoadUsers();
     }
 
+    private void Start()
+    {
+        LeaderboardService = GetComponent<LeaderboardService>();
+    }
+
     public bool CreateUser(string username)
     {
         if (users.ContainsKey(username))
@@ -47,6 +53,7 @@ public class UserManager : MonoBehaviour
         users.Add(username, newUser);
         SaveUsers();
         currentUser = newUser;
+        LeaderboardService.AddScore(0);
         return true; // User created successfully
     }
 

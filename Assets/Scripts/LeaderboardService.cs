@@ -17,4 +17,9 @@ public class LeaderboardService : MonoBehaviour
     {
         return abstractLeaderboard.GetLeaderboard();
     }
+
+    public (int currentRank, int scoreToNextRank) GetUserLeaderboardInfo()
+    {
+        return abstractLeaderboard.GetUserLeaderboardInfo();
+    }
 }

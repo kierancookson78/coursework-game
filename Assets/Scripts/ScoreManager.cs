@@ -9,8 +9,8 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI rankText;
-    [SerializeField] private TextMeshProUGUI rankedUpText;
     private LeaderboardService leaderboardService;
+    private LevelUpAnimation levelUpAnimation;
     private PowerUpAdder powerUpAdder;
     private int currentScore = 0;
     private int shieldStreak = 0;
@@ -44,6 +44,7 @@ public class ScoreManager : MonoBehaviour
         playerRank = currentRank;
         scoreToNextRank = scoreToNext;
         rankText.text = "Current Rank: " + playerRank + "\n" + "Score to rank up: " + scoreToNextRank;
+        levelUpAnimation = GetComponent<LevelUpAnimation>();
     }
 
     public void AddScore(int scoreToAdd)
@@ -101,7 +102,7 @@ public class ScoreManager : MonoBehaviour
 
     private void RankedUp()
     {
-        rankedUpText.text = "You ranked up!";
+        levelUpAnimation.PlayLevelUpAnimation();
     }
 
     public int GetScore()

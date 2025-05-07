@@ -8,7 +8,7 @@ public class MoveCommand : ICommand
     private float speed;
     private float rotationSpeed;
 
-    public MoveCommand(Transform planeTransform ,Rigidbody2D rb, Vector3 targetPosition, float speed, float rotationSpeed)
+    public MoveCommand(Transform planeTransform, Rigidbody2D rb, Vector3 targetPosition, float speed, float rotationSpeed)
     {
         this.planeTransform = planeTransform;
         this.rb = rb;
@@ -27,7 +27,7 @@ public class MoveCommand : ICommand
             direction.Normalize();
             rb.linearVelocity = direction * speed;
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            planeTransform.rotation = Quaternion.Slerp(planeTransform.rotation, Quaternion.Euler(0f, 0f, targetAngle), Time.fixedDeltaTime * rotationSpeed);
+            planeTransform.rotation = Quaternion.Slerp(planeTransform.rotation, Quaternion.Euler(0f, 0f, targetAngle), Time.deltaTime * rotationSpeed);
         }
         else
         {

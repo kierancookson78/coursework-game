@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private AudioClip bulletAudio;
+    [SerializeField] private AudioClip cannonAudio;
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float bulletSpeed = 15f;
     [SerializeField] private float fireRate = 0.2f;
     private float cooldownTimer = 0;
+    private float rotationSpeed = 15f;
     private PowerUpHotbar powerUpHotbar;
+    private MouseSensitivitySlider mouseSensitivitySlider;
 
     private ICommand moveCommand;
     private ICommand fireCommand;
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         powerUpHotbar = FindAnyObjectByType<PowerUpHotbar>();
+        mouseSensitivitySlider = FindAnyObjectByType<MouseSensitivitySlider>();
+        rotationSpeed *= mouseSensitivitySlider.GetSensitivity();
         if (planeRigidbody == null)
         {
             Debug.LogError("Plane transform not assigned");
@@ -39,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         // Mouse Movement
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool isCannonActive = powerUpHotbar.GetCannonStatus();
 
         moveCommand = new MoveCommand(planeTransform ,planeRigidbody, mousePosition, moveSpeed, rotationSpeed);
         moveCommand.Execute();
@@ -48,7 +53,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0) && cooldownTimer <= 0)
         {
             cooldownTimer = fireRate;
-            fireCommand = new FireCommand(bulletPrefab, firePoint, bulletAudio, bulletSpeed, powerUpHotbar);
+            if (isCannonActive)
+            {
+                fireCommand = new FireCommand(bulletPrefab, firePoint, cannonAudio, bulletSpeed, powerUpHotbar);
+            }
+            else
+            {
+                fireCommand = new FireCommand(bulletPrefab, firePoint, bulletAudio, bulletSpeed, powerUpHotbar);
+            }
             fireCommand.Execute();
         }
     }

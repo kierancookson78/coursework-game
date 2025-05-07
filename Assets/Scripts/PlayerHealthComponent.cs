@@ -9,6 +9,8 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioClip shieldSound;
+    private AudioSource shieldSource;
     [SerializeField] private TextMeshProUGUI currentUserText;
     [SerializeField] private TextMeshProUGUI currentUserHighScoreText;
     [SerializeField] private Slider healthSlider;
@@ -23,15 +25,26 @@ public class PlayerHealthComponent : MonoBehaviour
     private Color highHealthColor = Color.green;
     private float cooldownTimer = 0;
     private float regenDelay = 1;
+    private float duration = 2.5f;
+    private float _elapsedTime;
+    private float _startTime;
+    private float _startValue;
+    private float _targetValue;
 
     void Start()
     {
         currentUserHighScoreText.text = "High Score: " + UserManager.Instance.GetHighScore().ToString();
         currentUserText.text = UserManager.Instance.GetUsername();
+        shieldSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         shieldSlider.gameObject.SetActive(false);
         Cursor.visible = false;
         UpdateHealthBarColor();
+
+        shieldSlider.value = 0f;
+        _startValue = 0f;
+        _elapsedTime = 0f;
+        _targetValue = shieldSlider.maxValue;
     }
 
     void Update()
@@ -66,13 +79,14 @@ public class PlayerHealthComponent : MonoBehaviour
         } else
         {
             shield -= damage;
+            shieldSlider.value = shield;
             if (shield <= 0) 
-            { 
+            {
+                shieldSlider.value = 0;
                 shieldSlider.gameObject.SetActive(false);
                 isShieldActive = false;
                 shield = 50;
             }
-            shieldSlider.value = shield;
         }
     }
 
@@ -133,6 +147,35 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public void ActivateShield()
     {
+        isShieldActive = true;
+    }
+
+    public void StartFillingToValue(float targetValue)
+    {
+        _startTime = Time.time;
+        _startValue = shieldSlider.value;
+        _targetValue = targetValue;
+        _elapsedTime = 0f;
+        shieldSource.PlayOneShot(shieldSound);
+        StartCoroutine(UpdateSlider());
+    }
+
+    private IEnumerator UpdateSlider()
+    {
+        if (shieldSlider == null) yield break; //check if slider is null
+
+        isShieldActive = false;
+
+        while (_elapsedTime < duration)
+        {
+            _elapsedTime += Time.deltaTime; // Use Time.deltaTime
+            float t = Mathf.Clamp01(_elapsedTime / duration); // Normalized time
+            // Calculate the new value using Mathf.Lerp for smooth interpolation
+            float newValue = Mathf.Lerp(_startValue, _targetValue, t);
+            shieldSlider.value = newValue;
+            yield return null; // Wait for the next frame
+        }
+        shieldSlider.value = _targetValue;
         isShieldActive = true;
     }
 }

@@ -12,6 +12,7 @@ public class LevelUpAnimation : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rankUpText;
     private Vector3 initialPosition;
     private Vector3 initialPositionText;
+    private AudioSource levelUpAudioSource;
 
     private RectTransform arrowRectTransform;
     private RectTransform rankUpTextTransform;
@@ -23,6 +24,7 @@ public class LevelUpAnimation : MonoBehaviour
         {
             arrowRectTransform = upArrow.GetComponent<RectTransform>();
             rankUpTextTransform = rankUpText.GetComponent<RectTransform>();
+            levelUpAudioSource = GetComponent<AudioSource>();
             if (arrowRectTransform == null)
             {
                 Debug.LogError("upArrow GameObject must have a RectTransform component!");
@@ -36,6 +38,7 @@ public class LevelUpAnimation : MonoBehaviour
         initialPosition = arrowRectTransform.anchoredPosition;
         initialPositionText = rankUpTextTransform.anchoredPosition;
         upArrow.SetActive(false);
+        rankUpText.text = "";
     }
 
     // Call this function to start the level up animation
@@ -60,7 +63,7 @@ public class LevelUpAnimation : MonoBehaviour
         // Play sound effect if assigned
         if (levelUpSound != null)
         {
-            AudioSource.PlayClipAtPoint(levelUpSound, Camera.main.transform.localPosition, 4f);
+            levelUpAudioSource.PlayOneShot(levelUpSound);
         }
 
         // Perform the bouncing animation

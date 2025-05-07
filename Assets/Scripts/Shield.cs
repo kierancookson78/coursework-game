@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 public class Shield : PowerUp
@@ -7,5 +6,6 @@ public class Shield : PowerUp
     {
         shieldBar.gameObject.SetActive(true);
         playerHealthComponent.ActivateShield();
+        playerHealthComponent.StartFillingToValue(50);
     }
 }

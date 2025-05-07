@@ -470,7 +470,6 @@ MonoBehaviour:
   target: {fileID: 226359423}
   offset: {x: 0, y: 0, z: -1}
   smoothSpeed: 1
-  lookAtTarget: 1
 --- !u!1 &549262702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2061,7 @@ PrefabInstance:
       objectReference: {fileID: 288522682}
     - target: {fileID: 7343920158971518429, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7343920158971518429, guid: cd625590bd511944e8cba498eaf8cdf0, type: 3}
       propertyPath: shieldSound

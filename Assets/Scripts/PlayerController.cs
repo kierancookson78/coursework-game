@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Jet Components")]
     [SerializeField] private Rigidbody2D planeRigidbody;
     [SerializeField] private Transform planeTransform;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private AudioClip bulletAudio;
     [SerializeField] private AudioClip cannonAudio;
+
+    [Header("Player Jet Attributes")]
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float bulletSpeed = 15f;
     [SerializeField] private float fireRate = 0.2f;
+
     private float cooldownTimer = 0;
     private float rotationSpeed = 15f;
     private PowerUpHotbar powerUpHotbar;

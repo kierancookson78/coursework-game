@@ -26,7 +26,7 @@ public class LoginAndRegistration : MonoBehaviour
             {
                 messageText.text = "User '" + username + "' loaded.";
             }
-            // User loaded, proceed to game or next scene
+
             Debug.Log("User loaded");
             SceneManager.LoadSceneAsync(5, LoadSceneMode.Single);
         }
@@ -38,7 +38,7 @@ public class LoginAndRegistration : MonoBehaviour
                 {
                     messageText.text = "User '" + username + "' created.";
                 }
-                // User created, proceed to game or next scene
+ 
                 Debug.Log("User Created");
                 SceneManager.LoadSceneAsync(5, LoadSceneMode.Single);
             }

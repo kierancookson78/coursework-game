@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class EnemyInputHandler : MonoBehaviour
 {
+    [Header("Enemy Jet Components")]
     [SerializeField] private Rigidbody2D planeRigidbody;
     [SerializeField] private Transform planeTransform;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private AudioClip bulletAudio;
+
+    [Header("Enemy Jet Attributes")]
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float bulletSpeed = 15f;
@@ -40,14 +43,12 @@ public class EnemyInputHandler : MonoBehaviour
 
     void HandleInput()
     {
-        // Mouse Movement
         Vector3 playerPosition = player.position;
 
-        moveCommand = new EnemyMoveCommand(planeTransform, planeRigidbody, playerPosition, moveSpeed, rotationSpeed, detectionDistance); // Pass rotation speed
+        moveCommand = new EnemyMoveCommand(planeTransform, planeRigidbody, playerPosition, moveSpeed, rotationSpeed, detectionDistance);
         moveCommand.Execute();
-
-        // Left Mouse Button Click
         cooldownTimer -= Time.deltaTime;
+
         if (IsFacingPlayer() && cooldownTimer <= 0)
         {
             cooldownTimer = fireRate;

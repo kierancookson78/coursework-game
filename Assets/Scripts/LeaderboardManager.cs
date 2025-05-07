@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System; // For DateTime
+using System;
 
 [System.Serializable]
 public class LeaderboardData
@@ -23,13 +23,13 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
 {
     private LeaderboardData leaderboardData;
     private string leaderboardSavePath;
-    private const string LeaderboardFileName = "leaderboard.dat"; // Consistent file name
-    private int previousUserRank = -1; // To track rank changes
+    private const string LeaderboardFileName = "leaderboard.dat";
+    private int previousUserRank = -1;
 
     void Awake()
     {
         leaderboardSavePath = Path.Combine(Application.persistentDataPath, LeaderboardFileName);
-        LoadLeaderboard(); // Load on startup
+        LoadLeaderboard();
     }
 
     public void AddScore(int score)
@@ -38,7 +38,7 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
         {
             UserManager.Instance.UpdateHighScore(score);
             Debug.Log($"High score updated for user '{UserManager.Instance.GetUsername()}' to {UserManager.Instance.GetHighScore()}.");
-            UpdateLeaderboard(); // Update the cache whenever a score is added.
+            UpdateLeaderboard();
         }
         else
         {
@@ -56,7 +56,7 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
 
         if (leaderboardData == null || leaderboardData.entries == null || leaderboardData.entries.Count == 0)
         {
-            return "Leaderboard is empty."; //handles the case where the file load was empty
+            return "Leaderboard is empty.";
         }
 
         string leaderboardString = "--- HIGH SCORES ---\n";
@@ -123,7 +123,6 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
         // Get all user data from UserManager
         List<UserData> allUsers = GetAllUsers();
 
-        // Use a dictionary to store the highest score for each user
         Dictionary<string, int> highestScores = new Dictionary<string, int>();
         foreach (UserData user in allUsers)
         {
@@ -189,13 +188,13 @@ public class LeaderboardManager : MonoBehaviour, ILeaderboard
             catch (Exception e)
             {
                 Debug.LogError("Error loading leaderboard: " + e.Message);
-                leaderboardData = null; // Ensure leaderboardData is null on failure
+                leaderboardData = null;
             }
         }
         else
         {
             Debug.Log("No leaderboard data file found. Creating a new one.");
-            leaderboardData = null; // Initialize to null
+            leaderboardData = null;
         }
 
         // Initialize previous user rank on load

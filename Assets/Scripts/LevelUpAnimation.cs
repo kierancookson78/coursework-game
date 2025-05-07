@@ -19,7 +19,6 @@ public class LevelUpAnimation : MonoBehaviour
 
     void Start()
     {
-        // Get the RectTransform in Awake for efficiency
         if (upArrow != null)
         {
             arrowRectTransform = upArrow.GetComponent<RectTransform>();
@@ -28,7 +27,7 @@ public class LevelUpAnimation : MonoBehaviour
             if (arrowRectTransform == null)
             {
                 Debug.LogError("upArrow GameObject must have a RectTransform component!");
-                upArrow = null; // Disable the script if no RectTransform
+                upArrow = null;
             }
         }
         else
@@ -41,26 +40,21 @@ public class LevelUpAnimation : MonoBehaviour
         rankUpText.text = "";
     }
 
-    // Call this function to start the level up animation
     public void PlayLevelUpAnimation()
     {
         if (upArrow != null)
         {
-            // Start the coroutine, which handles the animation.
             StartCoroutine(AnimateArrow());
         }
     }
 
-    // Coroutine for animating the arrow
     private IEnumerator AnimateArrow()
     {
-        // Make sure the arrow is visible
         upArrow.SetActive(true);
         rankUpText.text = "You ranked up!";
 
         float timeElapsed = 0f;
 
-        // Play sound effect if assigned
         if (levelUpSound != null)
         {
             levelUpAudioSource.PlayOneShot(levelUpSound);
@@ -74,7 +68,7 @@ public class LevelUpAnimation : MonoBehaviour
             float verticalOffset = Mathf.Abs(Mathf.Sin(timeElapsed * Mathf.PI * numberOfBounces / animationDuration)) * bounceHeight;
             arrowRectTransform.anchoredPosition = initialPosition + new Vector3(0, verticalOffset, 0);
             rankUpTextTransform.anchoredPosition = initialPositionText + new Vector3(0, verticalOffset, 0);
-            yield return null; // Wait for the next frame.
+            yield return null;
         }
 
         // Make the arrow invisible after the animation.

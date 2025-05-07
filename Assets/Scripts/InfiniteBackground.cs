@@ -34,9 +34,7 @@ public class InfiniteBackground : MonoBehaviour
     void Update()
     {
         // Calculate the scroll direction based on the plane's velocity
-        Vector3 planeVelocity = planeTransform.GetComponent<Rigidbody2D>().linearVelocity; //Or Rigidbody for 3d
-
-        // Calculate the scroll offset based on the plane's velocity and the multiplier
+        Vector3 planeVelocity = planeTransform.GetComponent<Rigidbody2D>().linearVelocity;
         Vector2 scrollOffset = new Vector2(planeVelocity.x * scrollSpeedMultiplier * Time.deltaTime, planeVelocity.y * scrollSpeedMultiplier * Time.deltaTime);
 
         // Apply the new offset to the material, adding to the current offset.

@@ -4,8 +4,8 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private float spawnInterval = 2f; // Time between spawns
-    [SerializeField] private float spawnRadius = 10f; // Radius within which enemies will spawn
+    [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private float spawnRadius = 10f;
     [SerializeField] private float playerSafeRadius = 3f;
     [SerializeField] private Transform playerTransform;
 
@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        while (true) // Spawn continuously
+        while (true)
         {
             yield return new WaitForSeconds(spawnInterval);
             SpawnEnemy();
@@ -40,14 +40,5 @@ public class EnemySpawner : MonoBehaviour
                 positionValid = true;
             }
         }
-    }
-
-    // Optional: Draw a gizmo to visualize the spawn radius in the editor
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, spawnRadius);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(playerTransform.position, playerSafeRadius);
     }
 }

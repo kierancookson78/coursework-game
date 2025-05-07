@@ -7,7 +7,7 @@ public class ResolutionSelector : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
     private List<string> resolutionOptions = new List<string>();
-    private int selectedResolutionIndex; // Store the selected index
+    private int selectedResolutionIndex;
 
     private void Start()
     {
@@ -25,7 +25,6 @@ public class ResolutionSelector : MonoBehaviour
         // Load saved resolution
         LoadResolution();
 
-        // Add listener for dropdown value changes (store the selection)
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChange);
     }
 
@@ -57,7 +56,7 @@ public class ResolutionSelector : MonoBehaviour
             Resolution savedResolution = resolutions[savedResolutionIndex];
             Screen.SetResolution(savedResolution.width, savedResolution.height, FullScreenMode.ExclusiveFullScreen, savedResolution.refreshRateRatio);
             resolutionDropdown.value = savedResolutionIndex;
-            selectedResolutionIndex = savedResolutionIndex; // Keep track of loaded resolution
+            selectedResolutionIndex = savedResolutionIndex;
         }
         else
         {

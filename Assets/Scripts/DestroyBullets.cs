@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Destroys bullets after a specified time.
 public class DestroyBullets : MonoBehaviour
 {
     [SerializeField] private float destructTime = 1f;
@@ -7,9 +8,9 @@ public class DestroyBullets : MonoBehaviour
     {
         destructTime -= Time.deltaTime;
 
-        if ( destructTime <= 0 )
+        if (destructTime <= 0)
         {
-            Destroy( gameObject );
+            Destroy(gameObject);
         }
     }
 }

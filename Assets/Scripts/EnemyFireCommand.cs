@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// The enemy fire command fires their bullets from the nose of the jet.
 public class EnemyFireCommand : ICommand
 {
     private GameObject bulletPrefab;
@@ -19,11 +20,13 @@ public class EnemyFireCommand : ICommand
     {
         if (bulletPrefab != null && firePoint != null)
         {
+            // Spawn the bullet at the nose.
             GameObject bullet = GameObject.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
             if (rb != null)
             {
+                // fire the bullet
                 rb.linearVelocity = firePoint.up * bulletSpeed;
                 PlayBulletShot();
             }
@@ -38,6 +41,7 @@ public class EnemyFireCommand : ICommand
         }
     }
 
+    // Plays the bullet audio.
     private void PlayBulletShot()
     {
         if (bulletAudio != null)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic; // Required for Dictionary
+using System.Collections.Generic;
 
 [System.Serializable]
 public class UserData
@@ -32,7 +32,7 @@ public class UserManager : MonoBehaviour
             return;
         }
 
-        saveFilePath = Application.persistentDataPath + "/users.dat"; // Changed file name
+        saveFilePath = Application.persistentDataPath + "/users.dat";
         LoadUsers();
     }
 
@@ -46,7 +46,7 @@ public class UserManager : MonoBehaviour
         if (users.ContainsKey(username))
         {
             Debug.LogWarning("User with username '" + username + "' already exists.");
-            return false; // User already exists
+            return false;
         }
 
         UserData newUser = new UserData { username = username, highScore = 0 };
@@ -54,7 +54,7 @@ public class UserManager : MonoBehaviour
         SaveUsers();
         currentUser = newUser;
         LeaderboardService.AddScore(0);
-        return true; // User created successfully
+        return true;
     }
 
     public bool LoadUser(string username)
@@ -130,7 +130,7 @@ public class UserManager : MonoBehaviour
             catch (System.Exception e)
             {
                 Debug.LogError("Error loading users: " + e.Message);
-                users = new Dictionary<string, UserData>(); // Reset to empty if loading fails.
+                users = new Dictionary<string, UserData>();
             }
         }
         else

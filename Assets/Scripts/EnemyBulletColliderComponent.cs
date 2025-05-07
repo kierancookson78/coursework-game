@@ -1,21 +1,20 @@
 using UnityEngine;
 
+// Used to detect if enemy has hit the player with their bullet.
 public class EnemyBulletColliderComponent : MonoBehaviour
 {
-    [SerializeField] private int bulletDamage = 50; // Amount of damage the bullet deals
+    [SerializeField] private int bulletDamage = 50;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the collision is with an enemy jet
+        // Check if the collision is with the player jet.
         PlayerHealthComponent playerJet = collision.GetComponent<PlayerHealthComponent>();
 
         if (playerJet != null)
         {
-            // Damage the enemy jet
+            // Damage the player jet
             playerJet.TakeDamage(bulletDamage);
-
-            // Destroy the bullet (or deactivate it)
-            Destroy(gameObject); // Or gameObject.SetActive(false); for object pooling
+            Destroy(gameObject);
         }
     }
 }

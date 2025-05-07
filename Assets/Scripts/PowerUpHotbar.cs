@@ -10,8 +10,8 @@ public class PowerUpHotbar : MonoBehaviour
     private int selectedSlot = 0;
 
     [Header("UI Elements")]
-    [SerializeField] private Image[] hotbarImages; // Assign Image components in the Inspector
-    [SerializeField] private Image selectionIndicator; // Assign an Image to indicate selection
+    [SerializeField] private Image[] hotbarImages;
+    [SerializeField] private Image selectionIndicator;
 
     [Header("Power-up Icons")]
     [SerializeField] private PowerUpIconData[] powerUpIconData;
@@ -19,8 +19,8 @@ public class PowerUpHotbar : MonoBehaviour
     [System.Serializable]
     public struct PowerUpIconData
     {
-        public string powerUpName; // Name of the PowerUp class (e.g., "SpeedBoost", "Invisibility")
-        public Sprite icon;       // The icon for that power-up
+        public string powerUpName;
+        public Sprite icon;
     }
 
     [Header("Nuke Power Up")]
@@ -40,7 +40,7 @@ public class PowerUpHotbar : MonoBehaviour
         healthComponent = FindAnyObjectByType<PlayerHealthComponent>();
         playerController = FindAnyObjectByType<PlayerController>();
         powerUpAdder = GetComponent<PowerUpAdder>();
-        // Ensure the UI arrays are the correct size
+
         if (hotbarImages.Length != powerUpSlots.Length)
         {
             Debug.LogError("Number of hotbar images does not match the number of power-up slots!");
@@ -148,7 +148,7 @@ public class PowerUpHotbar : MonoBehaviour
                     // Find the icon in the array based on the power-up's *type*.
                     Sprite icon = GetIconForPowerUp(powerUpSlots[i]);
                     hotbarImages[i].sprite = icon;
-                    hotbarImages[i].enabled = icon != null; // Make sure the image is visible only if there's an icon
+                    hotbarImages[i].enabled = icon != null;
                 }
                 else
                 {
@@ -160,16 +160,14 @@ public class PowerUpHotbar : MonoBehaviour
         }
     }
 
-    // Helper function to get the icon for a power-up.
     private Sprite GetIconForPowerUp(PowerUp powerUp)
     {
         if (powerUp == null) return null;
 
-        string powerUpName = powerUp.GetType().Name; // Get the name of the PowerUp class.
+        string powerUpName = powerUp.GetType().Name;
 
-        // Use LINQ to find the PowerUpIconData that matches the powerUpName
         PowerUpIconData data = powerUpIconData.FirstOrDefault(d => d.powerUpName == powerUpName);
-        return data.icon; // Returns the sprite, or null if not found.
+        return data.icon;
     }
 
     // Update the position of the selection indicator
@@ -179,11 +177,11 @@ public class PowerUpHotbar : MonoBehaviour
         {
             // Position the selection indicator over the selected hotbar image
             selectionIndicator.transform.position = hotbarImages[selectedSlot].transform.position;
-            selectionIndicator.gameObject.SetActive(true); // Ensure the indicator is visible
+            selectionIndicator.gameObject.SetActive(true);
         }
         else if (selectionIndicator != null)
         {
-            selectionIndicator.gameObject.SetActive(false); // Hide if no valid slot is selected
+            selectionIndicator.gameObject.SetActive(false);
         }
     }
 

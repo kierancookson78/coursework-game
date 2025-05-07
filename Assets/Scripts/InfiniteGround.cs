@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InfiniteGroundSimple : MonoBehaviour
+public class InfiniteGround : MonoBehaviour
 {
     private Transform cameraTransform;
     private float initialYPosition;

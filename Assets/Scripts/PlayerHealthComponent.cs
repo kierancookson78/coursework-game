@@ -10,12 +10,15 @@ public class PlayerHealthComponent : MonoBehaviour
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private AudioClip shieldSound;
-    private AudioSource shieldSource;
+
+    [Header("HUD Elements")]
     [SerializeField] private TextMeshProUGUI currentUserText;
     [SerializeField] private TextMeshProUGUI currentUserHighScoreText;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Image healthfillImage;
     [SerializeField] private Slider shieldSlider;
+
+    private AudioSource shieldSource;
     private int currentHealth;
     private int shield = 50;
     private bool isShieldActive = false;
@@ -162,18 +165,17 @@ public class PlayerHealthComponent : MonoBehaviour
 
     private IEnumerator UpdateSlider()
     {
-        if (shieldSlider == null) yield break; //check if slider is null
+        if (shieldSlider == null) yield break;
 
         isShieldActive = false;
 
         while (_elapsedTime < duration)
         {
-            _elapsedTime += Time.deltaTime; // Use Time.deltaTime
-            float t = Mathf.Clamp01(_elapsedTime / duration); // Normalized time
-            // Calculate the new value using Mathf.Lerp for smooth interpolation
+            _elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(_elapsedTime / duration);
             float newValue = Mathf.Lerp(_startValue, _targetValue, t);
             shieldSlider.value = newValue;
-            yield return null; // Wait for the next frame
+            yield return null;
         }
         shieldSlider.value = _targetValue;
         isShieldActive = true;

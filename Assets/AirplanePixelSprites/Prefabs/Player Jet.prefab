@@ -87,7 +87,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.31, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -181,7 +181,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.31, y: 0.36}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.31, y: 0.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -219,6 +219,12 @@ MonoBehaviour:
   maxHealth: 100
   explosionPrefab: {fileID: 127332, guid: ef08d13eead399d4dbdaf49c94540206, type: 3}
   audioClip: {fileID: 8300000, guid: e192b71a7949f6642a2b368210c4df85, type: 3}
+  shieldSound: {fileID: 0}
+  currentUserText: {fileID: 0}
+  currentUserHighScoreText: {fileID: 0}
+  healthSlider: {fileID: 0}
+  healthfillImage: {fileID: 0}
+  shieldSlider: {fileID: 0}
 --- !u!114 &7623169063645601220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,8 +242,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1328834765021283889, guid: 384433c09db45d648b623a75a797bbd0, type: 3}
   firePoint: {fileID: 3919196732367411804}
   bulletAudio: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
+  cannonAudio: {fileID: 0}
   moveSpeed: 10
-  rotationSpeed: 5
   bulletSpeed: 15
   fireRate: 0.2
 --- !u!1 &6186306202778561132

@@ -56,7 +56,7 @@ public class PlayerHealthComponent : MonoBehaviour
         if (!Input.GetMouseButton(0) && cooldownTimer <= 0)
         {
             cooldownTimer = regenDelay;
-            currentHealth += 20;
+            currentHealth += 25;
             if (currentHealth > maxHealth)
             {
                 currentHealth = maxHealth;

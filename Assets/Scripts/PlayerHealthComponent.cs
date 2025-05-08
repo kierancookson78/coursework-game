@@ -20,7 +20,7 @@ public class PlayerHealthComponent : MonoBehaviour
 
     private AudioSource shieldSource;
     private int currentHealth;
-    private int shield = 50;
+    private int shield = 100;
     private bool isShieldActive = false;
     private bool isPlayerDead = false;
     private Color lowHealthColor = Color.red;
@@ -88,7 +88,7 @@ public class PlayerHealthComponent : MonoBehaviour
                 shieldSlider.value = 0;
                 shieldSlider.gameObject.SetActive(false);
                 isShieldActive = false;
-                shield = 50;
+                shield = 100;
             }
         }
     }

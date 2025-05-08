@@ -6,6 +6,6 @@ public class Shield : PowerUp
     {
         shieldBar.gameObject.SetActive(true);
         playerHealthComponent.ActivateShield();
-        playerHealthComponent.StartFillingToValue(50);
+        playerHealthComponent.StartFillingToValue(100);
     }
 }

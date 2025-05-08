@@ -49,6 +49,19 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int scoreToAdd)
     {
         currentScore += scoreToAdd;
+
+        leaderboardService.AddScore(currentScore);
+        (int currentRank, int scoreToNext) = leaderboardService.GetUserLeaderboardInfo();
+        int lastRank = playerRank;
+        playerRank = currentRank;
+        scoreToNextRank = scoreToNext;
+        rankText.text = "Current Rank: " + playerRank + "\n" + "Score to rank up: " + scoreToNextRank;
+
+        if (lastRank > playerRank)
+        {
+            Debug.Log("Ranked Up");
+            RankedUp();
+        }
         UpdateScoreText();
     }
 
@@ -84,19 +97,6 @@ public class ScoreManager : MonoBehaviour
         }
 
         AddScore(100);
-        leaderboardService.AddScore(currentScore);
-        (int currentRank, int scoreToNext) = leaderboardService.GetUserLeaderboardInfo();
-        int lastRank = playerRank;
-        playerRank = currentRank;
-        scoreToNextRank = scoreToNext;
-
-        rankText.text = "Current Rank: " + playerRank + "\n" + "Score to rank up: " + scoreToNextRank;
-
-        if (lastRank > playerRank)
-        {
-            Debug.Log("Ranked Up");
-            RankedUp();
-        }
     }
 
     private void RankedUp()

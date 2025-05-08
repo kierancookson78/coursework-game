@@ -238,8 +238,8 @@ MonoBehaviour:
   bulletAudio: {fileID: 8300000, guid: 0da528c5b3a40224c99f52332323707f, type: 3}
   moveSpeed: 5
   rotationSpeed: 5
-  bulletSpeed: 15
-  fireRate: 0.2
+  bulletSpeed: 10
+  fireRate: 0.4
   detectionDistance: 10
   angleTolerance: 5
 --- !u!1 &7945857263516253549
